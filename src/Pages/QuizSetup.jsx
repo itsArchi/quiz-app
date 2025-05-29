@@ -35,7 +35,6 @@ const QuizSetup = () => {
         }
       } catch (error) {
         console.error("Failed to load categories:", error)
-        // Categories will remain as just "Any Category"
       } finally {
         setCategoriesLoading(false)
       }
@@ -63,13 +62,11 @@ const QuizSetup = () => {
       startQuiz()
       console.log("Quiz started, navigating to /quiz...")
 
-      // Navigate to quiz page
       setTimeout(() => {
         navigate("/quiz", { replace: true })
       }, 100)
     } catch (error) {
       console.error("Error in handleStartQuiz:", error)
-      // Check if it's a rate limit error
       if (error.message.includes("busy") || error.message.includes("rate")) {
         setShowRateLimitInfo(true)
       }
@@ -103,7 +100,6 @@ const QuizSetup = () => {
           </button>
         </div>
 
-        {/* Rate limit info */}
         {showRateLimitInfo && (
           <div className="p-4 bg-blue-900 bg-opacity-20 rounded-lg">
             <div className="flex items-start space-x-3">

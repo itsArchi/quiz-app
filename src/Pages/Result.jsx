@@ -26,7 +26,6 @@ const Results = () => {
   // PERSENTASE SKOR
   const scorePercentage = totalQuestions > 0 ? Math.round((correctAnswers / totalQuestions) * 100) : 0
 
-  // Determine result message
   let resultMessage = ""
   if (scorePercentage >= 80) {
     resultMessage = "Excellent !!"

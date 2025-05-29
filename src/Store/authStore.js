@@ -4,21 +4,17 @@ import { persist } from "zustand/middleware"
 const useAuthStore = create(
   persist(
     (set, get) => ({
-      // State
       user: null,
       isAuthenticated: false,
       users: [],
 
-      // Actions
       register: (username, password) => {
         const { users } = get()
 
-        // Check if username already exists
         if (users.some((user) => user.username === username)) {
           throw new Error("Username already exists")
         }
 
-        // Add new user
         const updatedUsers = [...users, { username, password }]
 
         set({ users: updatedUsers })
@@ -28,7 +24,6 @@ const useAuthStore = create(
       login: (username, password) => {
         const { users } = get()
 
-        // Find user with matching username and password
         const foundUser = users.find((user) => user.username === username && user.password === password)
 
         if (foundUser) {

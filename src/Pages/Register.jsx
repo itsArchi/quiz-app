@@ -19,11 +19,9 @@ const Register = () => {
   const register = useAuthStore((state) => state.register)
   const navigate = useNavigate()
 
-  // Handle navigation when authenticated - only once
   useEffect(() => {
     if (isAuthenticated && !hasNavigatedRef.current) {
       hasNavigatedRef.current = true
-      // Use setTimeout to avoid navigation during render
       setTimeout(() => {
         navigate("/setup", { replace: true })
       }, 0)
@@ -37,7 +35,6 @@ const Register = () => {
       [name]: value,
     }))
 
-    // Clear error when user types
     if (errors[name]) {
       setErrors((prev) => ({
         ...prev,
@@ -49,21 +46,18 @@ const Register = () => {
   const validateForm = () => {
     const newErrors = {}
 
-    // Validate username
     if (!formData.username.trim()) {
       newErrors.username = "Username is required"
     } else if (formData.username.length < 3) {
       newErrors.username = "Username must be at least 3 characters"
     }
 
-    // Validate password
     if (!formData.password) {
       newErrors.password = "Password is required"
     } else if (formData.password.length < 6) {
       newErrors.password = "Password must be at least 6 characters"
     }
 
-    // Validate confirm password
     if (formData.password !== formData.confirmPassword) {
       newErrors.confirmPassword = "Passwords do not match"
     }
@@ -85,7 +79,6 @@ const Register = () => {
     }
   }
 
-  // Don't render register form if already authenticated
   if (isAuthenticated) {
     return null
   }

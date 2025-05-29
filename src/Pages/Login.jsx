@@ -17,11 +17,9 @@ const Login = () => {
   const login = useAuthStore((state) => state.login)
   const navigate = useNavigate()
 
-  // Handle navigation when authenticated - only once
   useEffect(() => {
     if (isAuthenticated && !hasNavigatedRef.current) {
       hasNavigatedRef.current = true
-      // Use setTimeout to avoid navigation during render
       setTimeout(() => {
         navigate("/setup", { replace: true })
       }, 0)
@@ -35,7 +33,6 @@ const Login = () => {
       [name]: value,
     }))
 
-    // Clear error when user types
     if (error) {
       setError("")
     }
@@ -54,13 +51,11 @@ const Login = () => {
       if (!success) {
         setError("Invalid username or password")
       }
-      // Navigation will be handled by useEffect when isAuthenticated changes
     } catch (error) {
       setError(error.message)
     }
   }
 
-  // Don't render login form if already authenticated
   if (isAuthenticated) {
     return null
   }

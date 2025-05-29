@@ -1,6 +1,5 @@
 import axios from "axios"
 
-// Create an axios instance with default configuration
 const api = axios.create({
   baseURL: "https://opentdb.com",
   timeout: 10000, 
@@ -9,7 +8,6 @@ const api = axios.create({
   },
 })
 
-// Add request interceptor for logging
 api.interceptors.request.use(
   (config) => {
     console.log(`Making API request to: ${config.baseURL}${config.url}`)
@@ -21,7 +19,6 @@ api.interceptors.request.use(
   },
 )
 
-// Add response interceptor for error handling
 api.interceptors.response.use(
   (response) => {
     console.log(`API response received from: ${response.config.url}`)

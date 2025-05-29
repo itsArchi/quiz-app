@@ -1,4 +1,3 @@
-// Initial quiz state
 export const initialQuizState = {
     questions: [],
     currentQuestionIndex: 0,
